@@ -15,9 +15,43 @@
 @implementation AppDelegate
 
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self updateLocalJSONFile];
+    [self updateStringsArray];
+    
     return YES;
+}
+
+
+
+-(NSString *)getLocalJSONFilePath{
+    return [[NSBundle mainBundle] pathForResource:@"Strings" ofType:@"json"];
+}
+
+-(NSURL *)getRemoteJSONURL{
+    return [NSURL URLWithString:@"https://raw.githubusercontent.com/heyitsolivia/secretpuppies/gh-pages/puppies.json"];
+}
+
+-(void)updateLocalJSONFile{
+    NSData *data = [NSData dataWithContentsOfURL:[self getRemoteJSONURL]];
+    if (data){
+        [data writeToFile:[self getLocalJSONFilePath] atomically:TRUE];
+    }
+}
+
+- (void) updateStringsArray {
+    NSData *jsonData = [NSData dataWithContentsOfFile:[self getLocalJSONFilePath]];
+    NSError *error;
+    self.strings = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+    
+    
+    for (int i = 0; i < self.strings.count; i++){
+        NSLog(@"%@",[self.strings objectAtIndex:i]);
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -32,6 +66,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    NSLog(@"will enter foreground");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

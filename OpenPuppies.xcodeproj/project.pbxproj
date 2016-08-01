@@ -16,6 +16,8 @@
 		152531EA1D3AD4C300E49407 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152531E81D3AD4C300E49407 /* LaunchScreen.storyboard */; };
 		152531F51D3AD4C300E49407 /* OpenPuppiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 152531F41D3AD4C300E49407 /* OpenPuppiesTests.m */; };
 		152532001D3AD4C300E49407 /* OpenPuppiesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 152531FF1D3AD4C300E49407 /* OpenPuppiesUITests.m */; };
+		1525320E1D3BAB5C00E49407 /* HblQhgb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1525320D1D3BAAA600E49407 /* HblQhgb.mp4 */; };
+		15CC69B51D3BE8A000C2D50F /* Strings.json in Resources */ = {isa = PBXBuildFile; fileRef = 15CC69B41D3BE8A000C2D50F /* Strings.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		152531FB1D3AD4C300E49407 /* OpenPuppiesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPuppiesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		152531FF1D3AD4C300E49407 /* OpenPuppiesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenPuppiesUITests.m; sourceTree = "<group>"; };
 		152532011D3AD4C300E49407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1525320D1D3BAAA600E49407 /* HblQhgb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HblQhgb.mp4; sourceTree = "<group>"; };
+		15CC69B41D3BE8A000C2D50F /* Strings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Strings.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 		152531D71D3AD4C300E49407 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				15CC69B41D3BE8A000C2D50F /* Strings.json */,
+				1525320D1D3BAAA600E49407 /* HblQhgb.mp4 */,
 				152531D81D3AD4C300E49407 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -249,8 +255,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1525320E1D3BAB5C00E49407 /* HblQhgb.mp4 in Resources */,
 				152531EA1D3AD4C300E49407 /* LaunchScreen.storyboard in Resources */,
 				152531E71D3AD4C300E49407 /* Assets.xcassets in Resources */,
+				15CC69B51D3BE8A000C2D50F /* Strings.json in Resources */,
 				152531E21D3AD4C300E49407 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +521,7 @@
 				152532061D3AD4C300E49407 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		152532071D3AD4C300E49407 /* Build configuration list for PBXNativeTarget "OpenPuppiesTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +530,7 @@
 				152532091D3AD4C300E49407 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1525320A1D3AD4C300E49407 /* Build configuration list for PBXNativeTarget "OpenPuppiesUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +539,7 @@
 				1525320C1D3AD4C300E49407 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

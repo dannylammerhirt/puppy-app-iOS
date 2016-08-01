@@ -21,5 +21,8 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 
+@property (strong, atomic) NSArray *strings;
+
+
 @end
 
