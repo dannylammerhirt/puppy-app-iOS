@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152126BF1D4F070D0082251E /* SavingActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152126BE1D4F070D0082251E /* SavingActivityView.m */; };
 		152531D91D3AD4C300E49407 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 152531D81D3AD4C300E49407 /* main.m */; };
 		152531DC1D3AD4C300E49407 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 152531DB1D3AD4C300E49407 /* AppDelegate.m */; };
 		152531DF1D3AD4C300E49407 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152531DE1D3AD4C300E49407 /* ViewController.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		152126BD1D4F06FD0082251E /* SavingActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavingActivityView.h; sourceTree = "<group>"; };
+		152126BE1D4F070D0082251E /* SavingActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingActivityView.m; sourceTree = "<group>"; };
 		152531D41D3AD4C300E49407 /* OpenPuppies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPuppies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		152531D81D3AD4C300E49407 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		152531DA1D3AD4C300E49407 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				152531DB1D3AD4C300E49407 /* AppDelegate.m */,
 				152531DD1D3AD4C300E49407 /* ViewController.h */,
 				152531DE1D3AD4C300E49407 /* ViewController.m */,
+				152126BD1D4F06FD0082251E /* SavingActivityView.h */,
+				152126BE1D4F070D0082251E /* SavingActivityView.m */,
 				152531E01D3AD4C300E49407 /* Main.storyboard */,
 				152531E61D3AD4C300E49407 /* Assets.xcassets */,
 				152531E81D3AD4C300E49407 /* LaunchScreen.storyboard */,
@@ -283,6 +288,7 @@
 				152531E51D3AD4C300E49407 /* OpenPuppies.xcdatamodeld in Sources */,
 				152531DF1D3AD4C300E49407 /* ViewController.m in Sources */,
 				152531DC1D3AD4C300E49407 /* AppDelegate.m in Sources */,
+				152126BF1D4F070D0082251E /* SavingActivityView.m in Sources */,
 				152531D91D3AD4C300E49407 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

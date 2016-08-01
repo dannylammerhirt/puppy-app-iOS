@@ -9,10 +9,12 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "SavingActivityView.h"
 
 @interface ViewController () <UIGestureRecognizerDelegate>
 
 @property (strong, atomic) NSArray *strings;
+@property SavingActivityView *indicator;
 
 @end
 
@@ -21,13 +23,11 @@
 NSURL *currentURL;
 NSString *currentString;
 @synthesize strings;
+@synthesize indicator;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void) viewDidAppear:(BOOL)animated {
     strings = [(AppDelegate *)[[UIApplication sharedApplication] delegate] strings];
     NSURL *movieURL = [self nextURL];
     [self.moviePlayer setContentURL:movieURL];
@@ -37,8 +37,8 @@ NSString *currentString;
     [self.moviePlayer setControlStyle:MPMovieControlStyleNone];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                         initWithTarget:self
-                                         action:@selector(didTapOnView:)];
+                                   initWithTarget:self
+                                   action:@selector(didTapOnView:)];
     [tap setDelegate:self];
     [self.moviePlayer.view addGestureRecognizer:tap];
     
@@ -50,6 +50,28 @@ NSString *currentString;
     [tap requireGestureRecognizerToFail:longPress];
     
     [self.moviePlayer play];
+    
+    indicator = [[SavingActivityView alloc] init];
+    [self.moviePlayer.view addSubview:indicator];
+    [self applyConstraints];
+    [self.moviePlayer.view bringSubviewToFront:indicator];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    
+}
+
+- (void) applyConstraints{
+    [self.moviePlayer.view setTranslatesAutoresizingMaskIntoConstraints:false];
+    [indicator setTranslatesAutoresizingMaskIntoConstraints:false];
+    
+    [self.moviePlayer.view addConstraint:[NSLayoutConstraint constraintWithItem:indicator attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.moviePlayer.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
+    
+    [self.moviePlayer.view addConstraint:[NSLayoutConstraint constraintWithItem:indicator attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.moviePlayer.view attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0]];
+    
+    [self.moviePlayer.view addConstraint:[NSLayoutConstraint constraintWithItem:indicator attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.moviePlayer.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+    
+    [self.moviePlayer.view addConstraint:[NSLayoutConstraint constraintWithItem:indicator attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.moviePlayer.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
 }
 
 - (void) didTapOnView:(UITapGestureRecognizer *)sender{
@@ -57,6 +79,16 @@ NSString *currentString;
         NSURL *url = [self nextURL];
         [self.moviePlayer setContentURL:url];
         [self.moviePlayer play];
+    
+    if (arc4random()%2==1){
+        
+        [indicator setBackgroundColor:[UIColor clearColor]];
+    } else {
+        [indicator setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
+
+    }
+    
+    
 }
 
 - (NSURL *) nextURL {
@@ -104,6 +136,9 @@ NSString *currentString;
         [alert addAction:settings];
         [self presentViewController:alert animated:true completion:nil];
     }
+    
+    [indicator beginSaving];
+    
     NSURL *sourceURL = currentURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:sourceURL];
     
@@ -111,8 +146,12 @@ NSString *currentString;
         NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
         NSURL *tempURL = [documentsURL URLByAppendingPathComponent:[sourceURL lastPathComponent]];
         [data writeToURL:tempURL atomically:YES];
-        UISaveVideoAtPathToSavedPhotosAlbum(tempURL.path, nil, NULL, NULL);
+        UISaveVideoAtPathToSavedPhotosAlbum(tempURL.path, self, @selector(video:didFinishSavingWithError:contextInfo:), NULL);
     }];
+}
+
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    [indicator successSaving];
 }
 
 
