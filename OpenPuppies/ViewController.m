@@ -27,7 +27,6 @@ NSString *currentString;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //NSURL *url=[NSURL fileURLWithPath:@""];
     [self.view setBackgroundColor:[UIColor blackColor]];
 }
 
@@ -35,23 +34,12 @@ NSString *currentString;
     strings = [(AppDelegate *)[[UIApplication sharedApplication] delegate] strings];
     NSLog(@"view did apear");
     NSURL *movieURL = [self nextURL];
-    //NSURL *movieURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"HblQhgb" ofType:@"mp4"]];
     movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
     
     [movieController.moviePlayer setRepeatMode:MPMovieRepeatModeOne];
     
     [movieController.moviePlayer setControlStyle:MPMovieControlStyleNone];
     
-    
-    /*UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnView:)];
-    [tap setDelegate:self];
-    
-    [movieController.moviePlayer.view addGestureRecognizer:tap];
-    
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressOnView:)];
-    [longPress setDelegate:self];
-    
-    [movieController.moviePlayer.view addGestureRecognizer:longPress];*/
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                          initWithTarget:self
                                          action:@selector(didTapOnView:)];
@@ -64,10 +52,7 @@ NSString *currentString;
     
     
     [tap requireGestureRecognizerToFail:longPress];
-    
-    //[self.view addSubview:movieController.view];
     [self presentMoviePlayerViewControllerAnimated:movieController];
-    //[self presentViewController:movieController animated:true completion:nil];
     [movieController.moviePlayer play];
 }
 
@@ -102,19 +87,6 @@ NSString *currentString;
         
         [movieController presentViewController:alert animated:YES completion:nil];
     }
-//    shouldAllowTouch = false;
-//    NSLog(@"long");
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NULL message:NULL preferredStyle:UIAlertControllerStyleActionSheet];
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"save" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action) {[self click];}];
-//    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel
-//                                                         handler:^(UIAlertAction * action) {[self click];}];
-//    
-//    [alert addAction:defaultAction];
-//    [alert addAction:cancelAction];
-//    
-//    [movieController presentViewController:alert animated:YES completion:nil];
-    //shouldAllowTouch = true;
 }
 
 - (void) save {
@@ -133,7 +105,6 @@ NSString *currentString;
             else {
                 // Present some dialog telling the user to open the settings app.
             }
-            //button clicked
         }];
         [alert addAction:settings];
         [movieController presentViewController:alert animated:true completion:nil];
@@ -147,45 +118,7 @@ NSString *currentString;
         [data writeToURL:tempURL atomically:YES];
         UISaveVideoAtPathToSavedPhotosAlbum(tempURL.path, nil, NULL, NULL);
     }];
-//    // I am using simple way to download the video, You can use according to you.
-//    NSURL *url = currentURL;
-//    NSData *data = [NSData dataWithContentsOfURL:url];
-//    
-//    // Write it to cache directory
-//    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:currentString];
-//    [data writeToFile:path atomically:YES];
-//    
-//    
-//    // After that use this path to save it to PhotoLibrary
-//    
-//    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//    [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:path] completionBlock:^(NSURL *assetURL, NSError *error) {
-//        
-//        if (error) {
-//            NSLog(@"%@", error.description);
-//        }else {
-//            NSLog(@"Done :)");
-//        }
-//        
-//    }];
 }
-
-/*
- 
- @synthesize movieController;
- 
- - (void)viewDidLoad {
- [super viewDidLoad];
- // Do any additional setup after loading the view, typically from a nib.
- //NSURL *url=[NSURL fileURLWithPath:@""];
- 
- NSURL *movieURL = [NSURL URLWithString:@"http://www.openpuppies.com/mp4/HblQhgb.mp4"];
- movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
- [self.view addSubview:movieController.view];
- [self presentMoviePlayerViewControllerAnimated:movieController];
- [movieController.moviePlayer play];
- }
-*/
 
 
 - (void)didReceiveMemoryWarning {
