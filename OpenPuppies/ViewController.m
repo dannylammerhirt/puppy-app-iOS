@@ -20,46 +20,43 @@
 
 NSURL *currentURL;
 NSString *currentString;
-
-@synthesize movieController;
 @synthesize strings;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self.view setBackgroundColor:[UIColor blackColor]];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     strings = [(AppDelegate *)[[UIApplication sharedApplication] delegate] strings];
     NSURL *movieURL = [self nextURL];
-    movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
+    [self.moviePlayer setContentURL:movieURL];
     
-    [movieController.moviePlayer setRepeatMode:MPMovieRepeatModeOne];
+    [self.moviePlayer setRepeatMode:MPMovieRepeatModeOne];
     
-    [movieController.moviePlayer setControlStyle:MPMovieControlStyleNone];
+    [self.moviePlayer setControlStyle:MPMovieControlStyleNone];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                          initWithTarget:self
                                          action:@selector(didTapOnView:)];
     [tap setDelegate:self];
-    [movieController.moviePlayer.view addGestureRecognizer:tap];
+    [self.moviePlayer.view addGestureRecognizer:tap];
     
     UILongPressGestureRecognizer *longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(didLongPressOnView:)];
     longPress.delegate = self;
-    [movieController.moviePlayer.view addGestureRecognizer:longPress];
+    [self.moviePlayer.view addGestureRecognizer:longPress];
     
     
     [tap requireGestureRecognizerToFail:longPress];
-    [self presentMoviePlayerViewControllerAnimated:movieController];
-    [movieController.moviePlayer play];
+    
+    [self.moviePlayer play];
 }
 
 - (void) didTapOnView:(UITapGestureRecognizer *)sender{
         
         NSURL *url = [self nextURL];
-        [movieController.moviePlayer setContentURL:url];
-        [movieController.moviePlayer play];
+        [self.moviePlayer setContentURL:url];
+        [self.moviePlayer play];
 }
 
 - (NSURL *) nextURL {
@@ -83,7 +80,7 @@ NSString *currentString;
         [alert addAction:defaultAction];
         [alert addAction:cancelAction];
         
-        [movieController presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -105,7 +102,7 @@ NSString *currentString;
             }
         }];
         [alert addAction:settings];
-        [movieController presentViewController:alert animated:true completion:nil];
+        [self presentViewController:alert animated:true completion:nil];
     }
     NSURL *sourceURL = currentURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:sourceURL];
