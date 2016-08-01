@@ -32,7 +32,6 @@ NSString *currentString;
 
 - (void) viewDidAppear:(BOOL)animated {
     strings = [(AppDelegate *)[[UIApplication sharedApplication] delegate] strings];
-    NSLog(@"view did apear");
     NSURL *movieURL = [self nextURL];
     movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
     
@@ -75,7 +74,6 @@ NSString *currentString;
 
 - (void) didLongPressOnView:(UILongPressGestureRecognizer *)sender{
     if (sender.state == UIGestureRecognizerStateBegan){
-        NSLog(@"long");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NULL message:NULL preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Save To Camera Roll" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {[self save];}];

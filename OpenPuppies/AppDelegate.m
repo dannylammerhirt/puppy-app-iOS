@@ -47,11 +47,6 @@
     NSError *error;
     self.strings = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
     
-    
-    for (int i = 0; i < self.strings.count; i++){
-        NSLog(@"%@",[self.strings objectAtIndex:i]);
-    }
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -66,7 +61,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    NSLog(@"will enter foreground");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
